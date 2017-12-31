@@ -1,8 +1,11 @@
 package com.example.bazoka.demojson;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         toolsArrayList = new ArrayList<>();
         toolsAdapter = new ToolsAdapter(this, R.layout.tools, toolsArrayList);
         listView.setAdapter(toolsAdapter);
+
 
 
         getData(url);
@@ -83,5 +87,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.manu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuthem:
+                startActivity(new Intent(MainActivity.this,UploadNewTool.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
