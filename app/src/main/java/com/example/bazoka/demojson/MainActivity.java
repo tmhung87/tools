@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,11 +26,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    boolean check;
     ListView listView;
     ToolsAdapter toolsAdapter;
     ArrayList<Tools> toolsArrayList;
-    String url = "http://192.168.1.19:81/tools/getdata.php";
-    String urlinsert = "http://192.168.1.19:81/tools/setdata.php";
+    String url = "https://1luutru.000webhostapp.com/getdata.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +39,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         anhxa();
         toolsArrayList = new ArrayList<>();
+        getData(url);
         toolsAdapter = new ToolsAdapter(this, R.layout.tools, toolsArrayList);
         listView.setAdapter(toolsAdapter);
 
-
-
-        getData(url);
-        setData(urlinsert);
     }
+
 
     private void anhxa() {
         listView = (ListView) findViewById(R.id.listviewtools);
@@ -83,9 +84,6 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
-    private void setData(String url) {
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,8 +96,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menuthem:
                 startActivity(new Intent(MainActivity.this,UploadNewTool.class));
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

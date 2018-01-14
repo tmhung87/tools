@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">DemoJson</string>
+    <string name="app_name">Tools</string>
+    <string name="channel_name">TOOLS</string>
+    <string name="channel_description">SetData Success</string>
 </resources>
